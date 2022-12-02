@@ -1,33 +1,12 @@
 package main
 
 import (
-    "bufio"
     "fmt"
     "log"
-    "os"
     "sort"
+
+	"advent-of-code-2022/utils/files/readFileAsLinesArray"
 )
-
-func readFileAsLinesArray(filename string) []string {
-    result := []string{}
-
-    file, err := os.Open(filename)
- 
-	if err != nil {
-		log.Fatalf("failed opening file: %s", err)
-	}
- 
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
- 
-	for scanner.Scan() {
-		result = append(result, scanner.Text())
-	}
- 
-	file.Close()
-
-    return result
-}
 
 func calculateTotals(lines []string) []int {
     result := []int{}
@@ -76,7 +55,7 @@ func reduceArray[T, M any](s []T, f func(M, T) M, initValue M) M {
 }
 
 func main() {
-    fileAsLineArray := readFileAsLinesArray("input.txt");
+    fileAsLineArray := readFileAsLinesArray.Exec("input.txt");
     totals := calculateTotals(fileAsLineArray)
 
     sort.Ints(totals)
