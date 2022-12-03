@@ -1,4 +1,4 @@
-module advent-of-code/2022-12-01
+module advent-of-code-2022/2022-12-03
 
 go 1.19
 

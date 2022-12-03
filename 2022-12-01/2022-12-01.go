@@ -5,6 +5,7 @@ import (
     "log"
     "sort"
 
+    "advent-of-code-2022/utils/arrays/reduceArray"
 	"advent-of-code-2022/utils/files/readFileAsLinesArray"
 )
 
@@ -46,14 +47,6 @@ func reverseArray(numbers []int) []int {
 	return newNumbers
 }
 
-func reduceArray[T, M any](s []T, f func(M, T) M, initValue M) M {
-    acc := initValue
-    for _, v := range s {
-        acc = f(acc, v)
-    }
-    return acc
-}
-
 func main() {
     fileAsLineArray := readFileAsLinesArray.Exec("input.txt");
     totals := calculateTotals(fileAsLineArray)
@@ -64,7 +57,7 @@ func main() {
     first := descSortedTotals[0];
     fmt.Println("Highest total of calories", first)
 
-    topThreeSum := reduceArray(descSortedTotals[:3], func(acc, current int) int {
+    topThreeSum := reduceArray.Exec(descSortedTotals[:3], func(acc, current int) int {
         return acc + current
     }, 0)
     fmt.Println("Sum of te top three combined calories", topThreeSum)
