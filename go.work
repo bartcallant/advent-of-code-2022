@@ -4,6 +4,7 @@ use (
 	./2022-12-01
 	./2022-12-02
 	./2022-12-03
+	./2022-12-04
 	./utils/arrays/reduceArray
 	./utils/files/readFileAsLinesArray
 )
