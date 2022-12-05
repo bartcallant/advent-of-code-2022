@@ -5,6 +5,9 @@ use (
 	./2022-12-02
 	./2022-12-03
 	./2022-12-04
+	./2022-12-05
+	./utils/arrays/chunkArrayByChunkSize
 	./utils/arrays/reduceArray
+	./utils/arrays/reverseArray
 	./utils/files/readFileAsLinesArray
 )

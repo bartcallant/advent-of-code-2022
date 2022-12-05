@@ -3,30 +3,15 @@ package main
 import (
 	"fmt"
 
+	"advent-of-code-2022/utils/arrays/chunkArrayByChunkSize"
 	"advent-of-code-2022/utils/arrays/reduceArray"
 	"advent-of-code-2022/utils/files/readFileAsLinesArray"
 )
 
-func chunkRuneArrayByChunkSize[T any](input []T, chunkSize int) [][]T {
-	var chunks [][]T
-
-	for i := 0; i < len(input); i += chunkSize {
-		var end = i + chunkSize
-
-		if end > len(input) {
-			end = len(input)
-		}
-
-		chunks = append(chunks, input[i:end])
-	}
-
-	return chunks
-}
-
 func chunkRuneArrayByNumberOfChunks[T any](input []T, numberOfChunks int) [][]T {
 	var chunkSize = len(input) / numberOfChunks
 
-	return chunkRuneArrayByChunkSize(input, chunkSize)
+	return chunkArrayByChunkSize.Exec(input, chunkSize)
 }
 
 func itemExistsInArray(item rune, array []rune) bool {
@@ -90,7 +75,7 @@ func part1(lines []string) {
 func part2(lines []string) {
 	var groupsSum int = 0
 
-	var groups = chunkRuneArrayByChunkSize(lines, 3)
+	var groups = chunkArrayByChunkSize.Exec(lines, 3)
 
 	for _, group := range groups {
 		var possibleGroupIds = []rune{}

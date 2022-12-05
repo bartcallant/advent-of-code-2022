@@ -1,7 +1,7 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 	"log"
 	"strings"
 
@@ -10,8 +10,8 @@ import (
 
 func calculateHandScore(hand string) int {
 	var scores = map[string]int{
-		"rock":  1,
-		"paper": 2,
+		"rock":     1,
+		"paper":    2,
 		"scissors": 3,
 	}
 
@@ -26,12 +26,12 @@ func calculateHandScore(hand string) int {
 
 func getResultScore(result string) int {
 	scores := map[string]int{
-		"lost":  0,
+		"lost": 0,
 		"draw": 3,
-		"win": 6,
+		"win":  6,
 	}
 
-	score, ok := scores[result];
+	score, ok := scores[result]
 
 	if ok != true {
 		log.Fatalf("Unable to generate score for %s", result)
@@ -42,26 +42,26 @@ func getResultScore(result string) int {
 
 func determineResult(hand1 string, hand2 string) string {
 	var resultMap = map[string]string{
-		"rock+rock": "draw",
-		"rock+paper": "win",
-		"rock+scissors": "lost",
-		"paper+rock": "lost",
-		"paper+paper": "draw",
-		"paper+scissors": "win",
-		"scissors+rock": "win",
-		"scissors+paper": "lost",
+		"rock+rock":         "draw",
+		"rock+paper":        "win",
+		"rock+scissors":     "lost",
+		"paper+rock":        "lost",
+		"paper+paper":       "draw",
+		"paper+scissors":    "win",
+		"scissors+rock":     "win",
+		"scissors+paper":    "lost",
 		"scissors+scissors": "draw",
 	}
 
 	var result, resultFound = resultMap[fmt.Sprintf("%s+%s", hand1, hand2)]
 
-	if (resultFound != true) {
+	if resultFound != true {
 		log.Fatalf("No result found for round %s vs %s", hand1, hand2)
 	}
 
 	return result
 }
- 
+
 func calculateRoundScorePart1(opponentHand string, ownHand string) int {
 	opponentHandConverter := map[string]string{
 		"A": "rock",
@@ -118,8 +118,8 @@ func calculateRoundScorePart2(opponentHand string, desiredResult string) int {
 	}
 
 	desiredResultToHandConverter := map[string]string{
-		determineResult(convertedOpponentHand, "rock"): "rock",
-		determineResult(convertedOpponentHand, "paper"): "paper",
+		determineResult(convertedOpponentHand, "rock"):     "rock",
+		determineResult(convertedOpponentHand, "paper"):    "paper",
 		determineResult(convertedOpponentHand, "scissors"): "scissors",
 	}
 
@@ -145,7 +145,7 @@ func main() {
 		var ownHand = round[1]
 
 		scorePart1 += calculateRoundScorePart1(opponentHand, ownHand)
-		scorePart2 += calculateRoundScorePart2(opponentHand, ownHand)	
+		scorePart2 += calculateRoundScorePart2(opponentHand, ownHand)
 	}
 
 	fmt.Println("PART1: Score", scorePart1)
