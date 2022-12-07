@@ -7,6 +7,7 @@ use (
 	./2022-12-04
 	./2022-12-05
 	./2022-12-06
+	./2022-12-07
 	./utils/arrays/chunkArrayByChunkSize
 	./utils/arrays/reduceArray
 	./utils/arrays/reverseArray
