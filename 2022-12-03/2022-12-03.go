@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"advent-of-code-2022/utils/arrays/chunkArrayByChunkSize"
+	"advent-of-code-2022/utils/arrays/doesItemExistInArray"
 	"advent-of-code-2022/utils/arrays/reduceArray"
 	"advent-of-code-2022/utils/files/readFileAsLinesArray"
 )
@@ -12,20 +13,6 @@ func chunkRuneArrayByNumberOfChunks[T any](input []T, numberOfChunks int) [][]T 
 	var chunkSize = len(input) / numberOfChunks
 
 	return chunkArrayByChunkSize.Exec(input, chunkSize)
-}
-
-func itemExistsInArray(item rune, array []rune) bool {
-	var result bool = false
-
-	for _, arrayItem := range array {
-		if arrayItem == item {
-			result = true
-
-			break
-		}
-	}
-
-	return result
 }
 
 func generatePriorityForRune(character rune) int {
@@ -55,8 +42,8 @@ func part1(lines []string) {
 		var duplicates = []rune{}
 
 		for _, item := range first {
-			if itemExistsInArray(item, second) {
-				if !itemExistsInArray(item, duplicates) {
+			if doesItemExistInArray.Exec(second, func(i rune) bool { return i == item }) {
+				if !doesItemExistInArray.Exec(duplicates, func(i rune) bool { return i == item }) {
 					duplicates = append(duplicates, item)
 				}
 			}
@@ -83,7 +70,7 @@ func part2(lines []string) {
 		var first = group[0]
 
 		for _, character := range first {
-			if itemExistsInArray(character, possibleGroupIds) {
+			if doesItemExistInArray.Exec(possibleGroupIds, func(c rune) bool { return c == character }) {
 				continue
 			}
 
@@ -92,7 +79,7 @@ func part2(lines []string) {
 			for i := 1; i < len(group); i++ {
 				var bag = []rune(group[i])
 
-				if itemExistsInArray(character, bag) {
+				if doesItemExistInArray.Exec(bag, func(c rune) bool { return c == character }) {
 					characterFoundInNumberOfBags += 1
 				}
 			}

@@ -10,7 +10,9 @@ use (
 	./2022-12-07
 	./2022-12-08
 	./2022-12-09
+	./2022-12-10
 	./utils/arrays/chunkArrayByChunkSize
+	./utils/arrays/doesItemExistInArray
 	./utils/arrays/reduceArray
 	./utils/arrays/reverseArray
 	./utils/files/readFileAsLinesArray
