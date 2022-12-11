@@ -11,6 +11,7 @@ use (
 	./2022-12-08
 	./2022-12-09
 	./2022-12-10
+	./2022-12-11
 	./utils/arrays/chunkArrayByChunkSize
 	./utils/arrays/doesItemExistInArray
 	./utils/arrays/reduceArray
